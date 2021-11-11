@@ -1,11 +1,14 @@
 package com.example.testapp.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.testapp.R
 import com.example.testapp.databinding.ActivityLoginBinding
+import com.example.testapp.models.StateLogin
+import com.example.testapp.util.goToActivity
 import com.example.testapp.util.toast
 import com.example.testapp.util.validate
 import com.example.testapp.viewmodels.LoginViewModel
@@ -28,7 +31,10 @@ class Login : AppCompatActivity() {
             val email = loginBinding.emailLoginEditText.text.toString()
             val password=loginBinding.passwordLoginEditText.text.toString()
             if(loginViewModel.isValidEmail(email) && loginViewModel.isValidPassword(password)) {
-                toast("si pasa")
+                loginViewModel.updateState(StateLogin(0,true))
+                goToActivity<Home>(){
+                    flags= Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
             } else {
                 toast("Asegúrese de que todos los datos sean correctos.")
             }
