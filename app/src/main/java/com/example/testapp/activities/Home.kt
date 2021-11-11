@@ -12,14 +12,14 @@ import com.example.testapp.util.goToActivity
 import com.example.testapp.viewmodels.LoginViewModel
 
 class Home : AppCompatActivity() {
-    private lateinit var loginViewModel: LoginViewModel
+    //private lateinit var loginViewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_home)
-        logOut()
+
+    // logOut()
     }
-    private fun logOut(){
+   /* private fun logOut(){
         val txtT = findViewById<TextView>(R.id.textTemp)
         txtT.setOnClickListener {
             loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
@@ -28,5 +28,5 @@ class Home : AppCompatActivity() {
                 flags= Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
         }
-    }
+    }*/
 }
