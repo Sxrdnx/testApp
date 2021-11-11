@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.example.testapp"
         minSdk 21
-        targetSdk 30
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -61,8 +61,9 @@ dependencies {
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
     //navigation
-
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    //Rouded Image View
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 
 }
