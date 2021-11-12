@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         loginViewModel.stateLogin.observe(this,{
-                if(it?.state == true && it != null){
+                if(it?.state == true ){
                     goToActivity<HomeActivity>(){
                         flags= Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     }

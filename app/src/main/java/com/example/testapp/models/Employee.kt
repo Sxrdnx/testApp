@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 @Entity(tableName="employees")
-data class Employe(
+data class Employee(
     @PrimaryKey
     @SerializedName("id") val id: Int = 0,
     @SerializedName("firstName") val nombre: String = "",

@@ -1,16 +1,19 @@
 package com.example.testapp.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.testapp.models.Employe
+import com.example.testapp.models.Employee
 import com.example.testapp.repositories.EmployeesRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class HomeViewModel : ViewModel() {
-    val employeeList = MutableLiveData<List<Employe>>()
+    private val _employeeList = MutableLiveData<List<Employee>>()
+    val employeeList: LiveData<List<Employee>>
+        get() =_employeeList
     init {
         viewModelScope.launch {
             getEmployeeList()
@@ -19,9 +22,9 @@ class HomeViewModel : ViewModel() {
     private suspend fun getEmployeeList() = withContext(Dispatchers.Default){
         val response = EmployeesRepository().getAllEmployees()
         if (response.isSuccessful){
-            employeeList.postValue(response.body()!!.employees)
+            _employeeList.postValue(response.body()!!.employees)
         }else{
-            employeeList.value = emptyList()
+            _employeeList.value = emptyList()
         }
     }
 }
