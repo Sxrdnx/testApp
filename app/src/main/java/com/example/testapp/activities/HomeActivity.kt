@@ -11,13 +11,12 @@ import com.example.testapp.models.StateLogin
 import com.example.testapp.util.goToActivity
 import com.example.testapp.viewmodels.LoginViewModel
 
-class Home : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
     //private lateinit var loginViewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-    // logOut()
     }
    /* private fun logOut(){
         val txtT = findViewById<TextView>(R.id.textTemp)

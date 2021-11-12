@@ -14,7 +14,7 @@ import com.example.testapp.util.validate
 import com.example.testapp.viewmodels.LoginViewModel
 import com.squareup.picasso.Picasso
 
-class Login : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     private lateinit var loginBinding: ActivityLoginBinding
     private lateinit var loginViewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class Login : AppCompatActivity() {
             val password=loginBinding.passwordLoginEditText.text.toString()
             if(loginViewModel.isValidEmail(email) && loginViewModel.isValidPassword(password)) {
                 loginViewModel.updateState(StateLogin(0,true))
-                goToActivity<Home>(){
+                goToActivity<HomeActivity>(){
                     flags= Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }
             } else {

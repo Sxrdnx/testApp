@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/customTheme">
         <activity
-            android:name=".activities.Home"
+            android:name=".activities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Login"
+            android:name=".activities.LoginActivity"
             android:theme="@style/NoPreview"
             android:windowSoftInputMode="adjustPan"
             android:exported="false"/>
