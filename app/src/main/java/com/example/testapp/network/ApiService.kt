@@ -1,6 +1,6 @@
 package com.example.testapp.network
 
-import com.example.testapp.repositories.EmployeesResponse
+import com.example.testapp.responses.EmployeesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

@@ -6,28 +6,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.example.testapp.R
+import com.example.testapp.databinding.EmployDetailsFragmentBinding
 import com.example.testapp.viewmodels.EmployDetailsViewModel
 
 class EmployDetails : Fragment() {
 
-    companion object {
-        fun newInstance() = EmployDetails()
-    }
-
     private lateinit var viewModel: EmployDetailsViewModel
-
+    private lateinit var detailsBinding: EmployDetailsFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.employ_details_fragment, container, false)
+        viewModel = ViewModelProvider(this).get(EmployDetailsViewModel::class.java)
+        detailsBinding = DataBindingUtil.inflate(inflater,R.layout.employ_details_fragment,
+        container,false)
+        val argument = EmployDetailsArgs.fromBundle(requireArguments())
+        doInitialisation(argument)
+        return detailsBinding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(EmployDetailsViewModel::class.java)
-        // TODO: Use the ViewModel
+    private fun doInitialisation(arg: EmployDetailsArgs) {
+        detailsBinding.employee = arg.employee
+        detailsBinding.calificacion = arg.employee.calificacion.toString()
     }
 
 }

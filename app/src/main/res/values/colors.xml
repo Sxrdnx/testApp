@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <!--+*custom colors**-->
+    <color name="colorTextOther">#Fad303</color>
     <color name="textTitles">#4D4848</color>
     <color name="background_and_text">#FFFFFFFF</color>
     <color name="primary">#39555E</color>
