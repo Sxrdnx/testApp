@@ -23,4 +23,7 @@
         <item name="colorOnPrimary">@color/primaryLight</item>
         <item name="colorPrimaryVariant">@color/primaryDark </item>
     </style>
+    <style name="themeSplash" parent="customTheme">
+        <item name="android:drawable">@drawable/splash_screen</item>
+    </style>
 </resources>

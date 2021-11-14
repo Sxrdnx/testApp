@@ -12,7 +12,9 @@ import com.example.testapp.viewmodels.LoginViewModel
 class MainActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.themeSplash)
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
         loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         loginViewModel.stateLogin.observe(this,{
                 if(it?.state == true ){

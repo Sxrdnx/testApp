@@ -18,10 +18,6 @@
             app:popExitAnim="@anim/slide_out_rigth"
             app:popUpTo="@id/employDetails"
             app:popUpToInclusive="false" />
-        <action
-            android:id="@+id/action_homeFragment_to_employeeSavedFragment"
-            app:destination="@id/employeeSavedFragment"
-            app:popUpTo="@id/employeeSavedFragment" />
     </fragment>
     <fragment
         android:id="@+id/employDetails"

@@ -46,7 +46,7 @@ class EmployeeSavedFragment : Fragment(),EmployeeSavedListener {
     }
 
     override fun employeeOfLineClicked() {
-        requireActivity().toast("no tienes internet")
+        requireActivity().toast("Sin Conexión")
     }
 
     override fun removeEmployee(employee: Employee, position: Int) {

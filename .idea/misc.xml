@@ -6,8 +6,10 @@
         <entry key="..\:/Android/testApp/app/src/main/res/drawable/backgroun_button.xml" value="0.12407407407407407" />
         <entry key="..\:/Android/testApp/app/src/main/res/drawable/background_edit_text.xml" value="0.12407407407407407" />
         <entry key="..\:/Android/testApp/app/src/main/res/drawable/background_item.xml" value="0.13703703703703704" />
+        <entry key="..\:/Android/testApp/app/src/main/res/drawable/ic_save.xml" value="0.13703703703703704" />
+        <entry key="..\:/Android/testApp/app/src/main/res/drawable/splash_screen.xml" value="0.13703703703703704" />
         <entry key="..\:/Android/testApp/app/src/main/res/font/font.xml" value="0.13703703703703704" />
-        <entry key="..\:/Android/testApp/app/src/main/res/layout/activity_home.xml" value="0.151268115942029" />
+        <entry key="..\:/Android/testApp/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Android/testApp/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Android/testApp/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Android/testApp/app/src/main/res/layout/employ_details_fragment.xml" value="0.292259083728278" />

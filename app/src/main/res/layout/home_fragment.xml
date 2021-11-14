@@ -37,16 +37,6 @@
                 android:contentDescription="@string/app_name"
                 android:padding="@dimen/_2sdp"
                 app:tint="@color/white" />
-            <ImageView
-                android:id="@+id/imageSave"
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
-                android:layout_gravity=""
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:src="@drawable/ic_save"
-                android:contentDescription="@string/app_name"
-                android:padding="@dimen/_2sdp"
-                app:tint="@color/white" />
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/employeesRcv"

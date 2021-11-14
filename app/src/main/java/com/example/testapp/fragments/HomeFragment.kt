@@ -43,17 +43,6 @@ class HomeFragment : Fragment(),EmployeeOnlineListener {
         , container,false)
         doInitialisation()
         loading()
-        val connection = ConnectionLiveData(requireActivity())
-        connection.observe(viewLifecycleOwner,{ isConnected ->
-            employees.clear()
-            if (isConnected){
-                getWithConnection()
-            }else{
-                employeesAdapter.notifyDataSetChanged()
-                requireActivity().toast("sin internet")
-            }
-        })
-        goToSavedEmployees()
         logOut()
         navDetail()
         return homeFragmentBinding.root
@@ -63,6 +52,7 @@ class HomeFragment : Fragment(),EmployeeOnlineListener {
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         employeesAdapter= EmployeeAdapter(employees,this)
         homeFragmentBinding.employeesRcv.adapter = employeesAdapter
+        getWithConnection()
     }
 
 
@@ -87,21 +77,6 @@ class HomeFragment : Fragment(),EmployeeOnlineListener {
             }
         })
     }
-    private fun goToSavedEmployees(){
-        homeFragmentBinding.imageSave.setOnClickListener {
-            this.findNavController().
-            navigate(R.id.action_homeFragment_to_employeeSavedFragment)
-        }
-    }
-    private fun logOut() {
-        homeFragmentBinding.imageLogout.setOnClickListener{
-            loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-            loginViewModel.updateState(StateLogin(0,false))
-            requireActivity().goToActivity<LoginActivity>{
-                flags= Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            }
-        }
-    }
     private fun navDetail(){
         viewModel.navigateToDetail.observe(viewLifecycleOwner,{employee->
             employee?.let {
@@ -112,6 +87,15 @@ class HomeFragment : Fragment(),EmployeeOnlineListener {
             }
         })
     }
+    private fun logOut() {
+        homeFragmentBinding.imageLogout.setOnClickListener{
+            loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+            loginViewModel.updateState(StateLogin(0,false))
+            requireActivity().goToActivity<LoginActivity>{
+                flags= Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+        }
+    }
 
     override fun onEmployeeClicked(employee: Employee) {
         viewModel.makeNavigation(employee)
@@ -119,6 +103,6 @@ class HomeFragment : Fragment(),EmployeeOnlineListener {
 
     override fun saveEmployee(employee: Employee) {
         viewModel.saveEmployee(employee)
-        requireActivity().toast("Empleado guardado")
+        requireActivity().toast("Guardado!")
     }
 }

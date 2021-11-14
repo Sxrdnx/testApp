@@ -9,18 +9,22 @@ import com.example.testapp.responses.EmployeesResponse
 import kotlinx.coroutines.*
 import retrofit2.Response
 
-class HomeViewModel (application: Application): AndroidViewModel(application) {
+class HomeViewModel (application: Application): AndroidViewModel(application    ) {
     private val dbRepository = EmployeeSavedRepository(application)
 
     private val _employeeList = MutableLiveData<List<Employee>>()
     val employeeList: LiveData<List<Employee>>
         get() =_employeeList
+
     private val _navigateToDetail = MutableLiveData<Employee?>()
     val navigateToDetail: LiveData<Employee?>
         get() = _navigateToDetail
+
     val isLoading = MutableLiveData(true)
+
     private val errorMessage = MutableLiveData<String>()
     private var job: Job? = null
+
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         onError("Exception handled --->: ${throwable.localizedMessage}")
     }

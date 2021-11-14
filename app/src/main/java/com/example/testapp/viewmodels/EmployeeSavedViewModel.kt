@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 
 class EmployeeSavedViewModel(application: Application) : AndroidViewModel(application) {
     private val dbRepository: EmployeeSavedRepository = EmployeeSavedRepository(application)
+
     fun getSavedEmployees():LiveData<List<Employee>>{
         return dbRepository.getEmployeesSaved()
     }
