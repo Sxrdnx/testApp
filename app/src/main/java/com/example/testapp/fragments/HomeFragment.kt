@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import com.example.testapp.R
 import com.example.testapp.activities.LoginActivity
@@ -18,9 +20,13 @@ import com.example.testapp.databinding.HomeFragmentBinding
 import com.example.testapp.listeners.EmployeeOnlineListener
 import com.example.testapp.models.Employee
 import com.example.testapp.models.StateLogin
+import com.example.testapp.responses.EmployeesResponse
+import com.example.testapp.util.ConnectionLiveData
 import com.example.testapp.util.goToActivity
+import com.example.testapp.util.toast
 import com.example.testapp.viewmodels.HomeViewModel
 import com.example.testapp.viewmodels.LoginViewModel
+import retrofit2.Response
 
 class HomeFragment : Fragment(),EmployeeOnlineListener {
     private lateinit var viewModel: HomeViewModel
@@ -35,8 +41,18 @@ class HomeFragment : Fragment(),EmployeeOnlineListener {
         homeFragmentBinding = DataBindingUtil.inflate(inflater,R.layout.home_fragment
         , container,false)
         doInitialisation()
-        logOut()
         loading()
+        val connection = ConnectionLiveData(requireActivity())
+        connection.observe(viewLifecycleOwner,{ isConnected ->
+            employees.clear()
+            if (isConnected){
+                getWithConnection()
+            }else{
+                employeesAdapter.notifyDataSetChanged()
+                requireActivity().toast("sin internet")
+            }
+        })
+        logOut()
         navDetail()
         return homeFragmentBinding.root
     }
@@ -53,21 +69,29 @@ class HomeFragment : Fragment(),EmployeeOnlineListener {
 
 
     @SuppressLint("NotifyDataSetChanged")
+    private fun getWithConnection(){
+        viewModel.employeeList.observe(viewLifecycleOwner,{
+            if(it.isNotEmpty() ){
+                employees.addAll(it)
+                employeesAdapter.notifyDataSetChanged()
+            }else{
+                requireActivity().toast("Sin elementos")
+            }
+        })
+    }
+
     private fun doInitialisation() {
         viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         employeesAdapter= EmployeeAdapter(employees,this)
         homeFragmentBinding.employeesRcv.adapter = employeesAdapter
-        viewModel.employeeList.observe(viewLifecycleOwner,{
-            employees.addAll(it)
-            employeesAdapter.notifyDataSetChanged()
-        })
+
     }
 
     private fun logOut() {
         homeFragmentBinding.imageLogout.setOnClickListener{
             loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
             loginViewModel.updateState(StateLogin(0,false))
-            activity?.goToActivity<LoginActivity>{
+            requireActivity().goToActivity<LoginActivity>{
                 flags= Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
         }

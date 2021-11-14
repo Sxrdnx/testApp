@@ -53,7 +53,6 @@
             android:fontFamily="@font/ubunt_regular"
             android:includeFontPadding="false"
             android:lineSpacingExtra="@dimen/_2sdp"
-            android:maxLines="4"
             android:text='@{employee.descripcion}'
             android:textColor="@color/white"
             android:textSize="@dimen/_11ssp"

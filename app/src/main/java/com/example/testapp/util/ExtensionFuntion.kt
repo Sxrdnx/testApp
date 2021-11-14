@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.Toast
 
+
 fun EditText.validate( validation: (String)->Unit){
     this.addTextChangedListener(object : TextWatcher{
         override fun afterTextChanged(p0: Editable?) {
