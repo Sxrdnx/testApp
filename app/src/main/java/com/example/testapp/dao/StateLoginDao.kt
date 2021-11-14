@@ -13,5 +13,5 @@ interface StateLoginDao {
     fun getStateLogin(): LiveData<StateLogin>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertNote(state: StateLogin)
+    suspend fun insertState(state: StateLogin)
 }

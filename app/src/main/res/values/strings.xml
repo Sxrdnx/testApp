@@ -5,4 +5,5 @@
     <string name="entrar">Entrar</string>
     <string name="mozper_tets_app">Mozper Tets App</string>
     <string name="mozper_empleados">Mozper | Empleados</string>
+    <string name="mozper_empleados_guardados">Mozper | Empleados Guardados</string>
 </resources>

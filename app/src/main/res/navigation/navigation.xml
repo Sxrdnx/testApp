@@ -18,14 +18,22 @@
             app:popExitAnim="@anim/slide_out_rigth"
             app:popUpTo="@id/employDetails"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_homeFragment_to_employeeSavedFragment"
+            app:destination="@id/employeeSavedFragment"
+            app:popUpTo="@id/employeeSavedFragment" />
     </fragment>
     <fragment
         android:id="@+id/employDetails"
-        android:name="com.example.testapp.fragments.EmployDetails"
+        android:name="com.example.testapp.fragments.EmployDetailsFragment"
         android:label="employ_details_fragment"
         tools:layout="@layout/employ_details_fragment" >
         <argument
             android:name="employee"
             app:argType="com.example.testapp.models.Employee" />
     </fragment>
+    <fragment
+        android:id="@+id/employeeSavedFragment"
+        android:name="com.example.testapp.fragments.EmployeeSavedFragment"
+        android:label="EmployeeSavedFragment" />
 </navigation>

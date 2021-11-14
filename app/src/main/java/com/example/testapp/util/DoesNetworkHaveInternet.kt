@@ -16,10 +16,10 @@ object DoesNetworkHaveInternet {
             val socket = socketFactory.createSocket() ?: throw IOException("Socket is null.")
             socket.connect(InetSocketAddress("8.8.8.8", 53), 1500)
             socket.close()
-            Log.d(TAG, "PING success.")
+            Log.d(TAG, "PING correcto.")
             true
         }catch (e: IOException){
-            Log.e(TAG, "No internet connection. $e")
+            Log.d(TAG, "PING fallido.")
             false
         }
     }

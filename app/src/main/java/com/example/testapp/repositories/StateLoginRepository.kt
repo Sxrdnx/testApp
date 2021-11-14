@@ -11,6 +11,6 @@ class StateLoginRepository(application: Application) {
     fun getState(): LiveData<StateLogin> = dbInstanceStateLoginDao.getStateLogin()
 
     suspend fun insertOrUpdateState(stateLogin: StateLogin){
-        dbInstanceStateLoginDao.insertNote(stateLogin)
+        dbInstanceStateLoginDao.insertState(stateLogin)
     }
 }

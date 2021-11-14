@@ -1,16 +1,17 @@
 package com.example.testapp.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
 import com.example.testapp.models.Employee
+import com.example.testapp.repositories.EmployeeSavedRepository
 import com.example.testapp.repositories.EmployeesRepository
 import com.example.testapp.responses.EmployeesResponse
 import kotlinx.coroutines.*
 import retrofit2.Response
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel (application: Application): AndroidViewModel(application) {
+    private val dbRepository = EmployeeSavedRepository(application)
+
     private val _employeeList = MutableLiveData<List<Employee>>()
     val employeeList: LiveData<List<Employee>>
         get() =_employeeList
@@ -38,6 +39,12 @@ class HomeViewModel : ViewModel() {
                     onError("Error --->: ${response.message()} ")
                 }
             }
+        }
+    }
+
+    fun saveEmployee(employee: Employee){
+        viewModelScope.launch {
+            dbRepository.insertEmployee(employee)
         }
     }
     fun doneNavigation(){

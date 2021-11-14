@@ -34,6 +34,7 @@ class HomeFragment : Fragment(),EmployeeOnlineListener {
     private lateinit var employeesAdapter : EmployeeAdapter
     private val employees = mutableListOf<Employee>()
     private lateinit var loginViewModel: LoginViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,10 +53,18 @@ class HomeFragment : Fragment(),EmployeeOnlineListener {
                 requireActivity().toast("sin internet")
             }
         })
+        goToSavedEmployees()
         logOut()
         navDetail()
         return homeFragmentBinding.root
     }
+
+    private fun doInitialisation() {
+        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        employeesAdapter= EmployeeAdapter(employees,this)
+        homeFragmentBinding.employeesRcv.adapter = employeesAdapter
+    }
+
 
     private fun loading() {
         viewModel.isLoading.observe(viewLifecycleOwner,{
@@ -66,7 +75,6 @@ class HomeFragment : Fragment(),EmployeeOnlineListener {
             }
         })
     }
-
 
     @SuppressLint("NotifyDataSetChanged")
     private fun getWithConnection(){
@@ -79,14 +87,12 @@ class HomeFragment : Fragment(),EmployeeOnlineListener {
             }
         })
     }
-
-    private fun doInitialisation() {
-        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        employeesAdapter= EmployeeAdapter(employees,this)
-        homeFragmentBinding.employeesRcv.adapter = employeesAdapter
-
+    private fun goToSavedEmployees(){
+        homeFragmentBinding.imageSave.setOnClickListener {
+            this.findNavController().
+            navigate(R.id.action_homeFragment_to_employeeSavedFragment)
+        }
     }
-
     private fun logOut() {
         homeFragmentBinding.imageLogout.setOnClickListener{
             loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
@@ -106,7 +112,13 @@ class HomeFragment : Fragment(),EmployeeOnlineListener {
             }
         })
     }
+
     override fun onEmployeeClicked(employee: Employee) {
         viewModel.makeNavigation(employee)
+    }
+
+    override fun saveEmployee(employee: Employee) {
+        viewModel.saveEmployee(employee)
+        requireActivity().toast("Empleado guardado")
     }
 }

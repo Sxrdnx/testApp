@@ -11,7 +11,7 @@ import com.example.testapp.R
 import com.example.testapp.databinding.EmployDetailsFragmentBinding
 import com.example.testapp.viewmodels.EmployDetailsViewModel
 
-class EmployDetails : Fragment() {
+class EmployDetailsFragment : Fragment() {
 
     private lateinit var viewModel: EmployDetailsViewModel
     private lateinit var detailsBinding: EmployDetailsFragmentBinding
@@ -22,12 +22,12 @@ class EmployDetails : Fragment() {
         viewModel = ViewModelProvider(this).get(EmployDetailsViewModel::class.java)
         detailsBinding = DataBindingUtil.inflate(inflater,R.layout.employ_details_fragment,
         container,false)
-        val argument = EmployDetailsArgs.fromBundle(requireArguments())
+        val argument = EmployDetailsFragmentArgs.fromBundle(requireArguments())
         doInitialisation(argument)
         return detailsBinding.root
     }
 
-    private fun doInitialisation(arg: EmployDetailsArgs) {
+    private fun doInitialisation(arg: EmployDetailsFragmentArgs) {
         detailsBinding.employee = arg.employee
         detailsBinding.calificacion = arg.employee.calificacion.toString()
     }
